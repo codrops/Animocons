@@ -1,0 +1,314 @@
+@font-face {
+	font-family: 'codropsicons';
+	font-weight: normal;
+	font-style: normal;
+	src: url('../fonts/codropsicons/codropsicons.eot');
+	src: url('../fonts/codropsicons/codropsicons.eot?#iefix') format('embedded-opentype'), url('../fonts/codropsicons/codropsicons.woff') format('woff'), url('../fonts/codropsicons/codropsicons.ttf') format('truetype'), url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
+}
+
+*,
+*::after,
+*::before {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	counter-reset: gridcounter;
+	color: #000;
+	background: #f9f9f9;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+a {
+	text-decoration: none;
+	color: #999;
+	outline: none;
+}
+
+a:hover,
+a:focus {
+	color: #000;
+	outline: none;
+}
+
+.special-link {
+	position: relative;
+	color: #f64040;
+	-webkit-transition: color 0.2s;
+	transition: color 0.2s;
+}
+
+.special-link svg {
+	left: 0;
+}
+
+.special-link:hover,
+.special-link:focus {
+	color: #D52828;
+}
+
+/* Header */
+
+.codrops-header {
+	position: relative;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-align-items: center;
+	align-items: center;
+	padding: 1.75em 0.85em 1.5em;
+	letter-spacing: 1px;
+}
+
+.main-title {
+	font-size: 2.5em;
+	line-height: 1;
+	padding: 1em 0.5em 0;
+	margin: 0;
+	text-align: center;
+	width: 100%;
+}
+
+.main-title__upper {
+	display: block;
+	padding: 0 0 1.5em 0;
+	font-size: 0.65em;
+	color: #aaa;
+	letter-spacing: 5px;
+	text-indent: 5px;
+	font-family: 'Patrick Hand SC', cursive;
+}
+
+.dotted {
+	color: #f64040;
+}
+
+.dotted::before,
+.dotted::after {
+	content: '\2022';
+	font-size: 0.75em;
+	opacity: 0.4;
+}
+
+.main-info {
+	padding: 2em 1em 0;
+	margin: 0 auto;
+	font-weight: bold;
+	color: #D1CECE;
+	max-width: 40em;
+	text-align: center;
+}
+
+/* Top Navigation Style */
+
+.codrops-links {
+	position: relative;
+	display: inline-block;
+	text-align: center;
+	white-space: nowrap;
+	pointer-events: auto;
+}
+
+.codrops-links::after,
+.codrops-demos a:not(:last-child)::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 1px;
+	height: 100%;
+	background: #aaa;
+	-webkit-transform: translateY(-50%) rotate3d(0, 0, 1, 22.5deg);
+	transform: translateY(-50%) rotate3d(0, 0, 1, 22.5deg);
+}
+
+.codrops-icon {
+	display: inline-block;
+	width: 1.5em;
+	margin: 0 0.5em;
+	text-decoration: none;
+}
+
+.codrops-icon span {
+	display: none;
+}
+
+.codrops-icon::before {
+	font-family: 'codropsicons';
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	line-height: 1;
+	margin: 0 5px;
+	text-transform: none;
+	-webkit-font-smoothing: antialiased;
+	speak: none;
+}
+
+.codrops-icon--drop::before {
+	content: '\e001';
+	color: #988ADE;
+}
+
+.codrops-icon--prev::before {
+	content: '\e004';
+}
+
+
+/* Demo links */
+.codrops-demos {
+	font-weight: bold;
+	line-height: 1;
+	margin: 0 1em 0 auto;
+	text-align: center;
+}
+
+.codrops-demos a {
+	position: relative;
+	display: inline-block;
+	pointer-events: auto;
+}
+
+.codrops-demos a:not(:last-child)::after {
+	left: calc(100% + 0.5em);
+}
+
+.codrops-demos a:not(:last-child) {
+	margin: 0 1em 0.1em 0;
+}
+
+.codrops-demos a.current-demo {
+	color: #504f55;
+}
+
+
+/* Content */
+
+.grid {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+	padding: 0;
+	list-style: none;
+	max-width: 60em;
+	margin: 3em auto 0;
+}
+
+.grid__item {
+	position: relative;
+	text-align: center;
+	background: #f0f0f0;
+	margin: 0 0 5em;
+	width: 100%;
+	min-height: 36em;
+	display: -ms-flexbox;
+	-ms-flex-pack: center;
+	-ms-flex-align: center;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-align-content: center;
+	align-content: center;
+}
+
+.grid__item::before {
+	content: counter(gridcounter);
+	font-size: 5.5em;
+	font-weight: bold;
+	line-height: 1;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	counter-increment: gridcounter;
+	text-align: center;
+	color: #2b2929;
+	font-family: 'Patrick Hand SC', cursive;
+	-webkit-transform: translate3d(0.2em,50%,0);
+	transform: translate3d(0.2em,50%,0);
+}
+
+/* Related demos */
+
+.content--related {
+	font-weight: bold;
+	padding: 8em 1em;
+	margin: 15em 0 0;
+	text-align: center;
+	background: #26252a;
+	color: #f0f0f0;
+}
+
+.media-item {
+	display: inline-block;
+	padding: 1em;
+	vertical-align: top;
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
+}
+
+.media-item__img {
+	max-width: 100%;
+	opacity: 0.3;
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+
+.media-item:focus .media-item__img,
+.media-item:hover .media-item__img {
+	opacity: 1;
+}
+
+.media-item:focus,
+.media-item:hover {
+	color: #988ADE;
+}
+
+.media-item__title {
+	font-size: 1em;
+	margin: 0;
+	padding: 0.5em;
+}
+
+.github-corner svg {
+	fill: #988ADE;
+	color: #fff; 
+	position: absolute; 
+	top: 0; 
+	border: 0; 
+	right: 0;
+}
+
+.github-corner:hover .octo-arm {
+	animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave {
+	0%,100% {
+		transform: rotate(0);
+	}
+	20%,60% {
+		transform: rotate(-25deg);
+	}
+	40%,80% {
+		transform: rotate(10deg);
+	}
+}
+
+@media (max-width: 40em) {
+	.github-corner:hover .octo-arm {
+		animation: none;
+	}
+	.github-corner .octo-arm {
+		animation: octocat-wave 560ms ease-in-out;
+	}
+}
