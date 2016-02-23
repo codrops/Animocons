@@ -3,7 +3,7 @@ Animated icons powered by the motion graphics library mo.js by Oleg Solomka. Ins
 
 [Article on Codrops](http://tympanus.net/codrops/?p=26160)
 
-[Demo](http://tympanus.net/Devlopment/Animocons/)
+[Demo](http://tympanus.net/Development/Animocons/)
 
 ## License
 
