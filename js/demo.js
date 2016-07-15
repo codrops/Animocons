@@ -59,7 +59,7 @@
 			}
 			else {
 				self.options.onCheck();
-				self.timeline.start();
+				self.timeline.replay();
 			}
 			self.checked = !self.checked;
 		});
@@ -67,10 +67,7 @@
 
 	Animocon.prototype.options = {
 		tweens : [
-			new mojs.Burst({
-				shape : 'circle',
-				isRunLess: true
-			})
+			new mojs.Burst({})
 		],
 		onCheck : function() { return false; },
 		onUnCheck : function() { return false; }
@@ -86,33 +83,28 @@
 			tweens : [
 				// burst animation
 				new mojs.Burst({
-					parent: el1,
-					duration: 1700,
-					shape : 'circle',
-					fill: '#C0C1C3',
-					x: '50%',
-					y: '50%',
-					opacity: 0.6,
-					childOptions: { radius: {15:0} },
-					radius: {30:90},
-					count: 6,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					parent: 			el1,
+					radius: 			{30:90},
+					count: 				6,
+					children : {
+						fill: 			'#C0C1C3',
+						opacity: 		0.6,
+						radius: 		15,
+						duration: 	1700,
+						easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
+					}
 				}),
 				// ring animation
-				new mojs.Transit({
-					parent: el1,
-					duration: 700,
-					type: 'circle',
-					radius: {0: 60},
-					fill: 'transparent',
-					stroke: '#C0C1C3',
+				new mojs.Shape({
+					parent: 		el1,
+					type: 			'circle',
+					radius: 		{0: 60},
+					fill: 			'transparent',
+					stroke: 		'#C0C1C3',
 					strokeWidth: {20:0},
-					opacity: 0.6,
-					x: '50%',     
-					y: '50%',
-					isRunLess: true,
-					easing: mojs.easing.sin.out
+					opacity: 		0.6,
+					duration: 	700,
+					easing: 		mojs.easing.sin.out
 				}),
 				// icon scale animation
 				new mojs.Tween({
@@ -143,32 +135,27 @@
 			tweens : [
 				// burst animation
 				new mojs.Burst({
-					parent: el2,
-					duration: 1500,
-					delay: 300,
-					shape : 'circle',
-					fill: '#C0C1C3',
-					x: '50%',
-					y: '50%',
-					opacity: 0.6,
-					radius: {40:90},
-					count: 6,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					parent: 		el2,
+					count: 			6,
+					radius: 		{ 40 : 90 },
+					timeline:   { delay: 300 },
+					children: {
+						fill: 			'#C0C1C3',
+						radius:     7,
+						opacity: 		0.6,
+						duration: 	1500,
+						easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
+					}
 				}),
 				// ring animation
-				new mojs.Transit({
-					parent: el2,
-					duration: 600,
-					type: 'circle',
-					radius: {0: 50},
-					fill: 'transparent',
-					stroke: '#C0C1C3',
+				new mojs.Shape({
+					parent: 		el2,
+					radius: 		{0: 50},
+					fill: 			'transparent',
+					stroke: 		'#C0C1C3',
 					strokeWidth: {35:0},
-					opacity: 0.6,
-					x: '50%',     
-					y: '50%',
-					isRunLess: true,
+					opacity: 			0.6,
+					duration: 		600,
 					easing: mojs.easing.ease.inout
 				}),
 				// icon scale animation
@@ -200,33 +187,31 @@
 			tweens : [
 				// burst animation
 				new mojs.Burst({
-					parent: el3,
-					duration: 1500,
-					delay: 300,
-					shape : 'circle',
-					fill : [ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
-					x: '50%',
-					y: '50%',
-					opacity: 0.6,
-					radius: {40:90},
-					count: 6,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					parent: 		el3,
+					count: 			6,
+					radius: 		{40:90},
+					children: {
+						fill: 			[ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
+						opacity: 		0.6,
+						scale: 			1,
+						radius:     { 7: 0 },
+						duration: 	1500,
+						delay: 			300,
+						easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
+					}
 				}),
 				// ring animation
-				new mojs.Transit({
-					parent: el3,
-					duration: 750,
-					type: 'circle',
-					radius: {0: 50},
-					fill: 'transparent',
-					stroke: '#988ADE',
-					strokeWidth: {35:0},
-					opacity: 0.6,
-					x: '50%',     
-					y: '50%',
-					isRunLess: true,
-					easing: mojs.easing.bezier(0, 1, 0.5, 1)
+				new mojs.Shape({
+					parent: 			el3,
+					type: 				'circle',
+					scale:        { 0: 1 },
+					radius: 			50,
+					fill: 				'transparent',
+					stroke: 			'#988ADE',
+					strokeWidth: 	{35:0},
+					opacity: 			0.6,
+					duration:  		750,
+					easing: 			mojs.easing.bezier(0, 1, 0.5, 1)
 				}),
 				// icon scale animation
 				new mojs.Tween({
@@ -258,34 +243,31 @@
 			tweens : [
 				// burst animation
 				new mojs.Burst({
-					parent: el4,
-					duration: 1500,
-					shape : 'circle',
-					fill : [ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
-					x: '50%',
-					y: '50%',
-					opacity: 0.6,
-					childOptions: { radius: {20:0} },
-					radius: {40:120},
-					count: 6,
-					isSwirl: true,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					parent: 	el4,
+					count: 		6,
+					radius: 	{40:120},
+					children: {
+						fill : 		[ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
+						opacity: 	0.6,
+						radius: 	20,
+						direction: [ -1, -1, -1, 1, -1 ],
+						swirlSize: 'rand(10, 14)',
+						duration: 1500,
+						easing: 	mojs.easing.bezier(0.1, 1, 0.3, 1),
+						isSwirl: 	true
+					}
 				}),
 				// ring animation
-				new mojs.Transit({
-					parent: el4,
-					duration: 750,
-					type: 'circle',
-					radius: {0: 50},
-					fill: 'transparent',
-					stroke: '#988ADE',
-					strokeWidth: {15:0},
-					opacity: 0.6,
-					x: '50%',     
-					y: '50%',
-					isRunLess: true,
-					easing: mojs.easing.bezier(0, 1, 0.5, 1)
+				new mojs.Shape({
+					parent: 			el4,
+					radius: 			50,
+					scale: 				{ 0 : 1 },
+					fill: 				'transparent',
+					stroke: 			'#988ADE',
+					strokeWidth: 	{15:0},
+					opacity: 			0.6,
+					duration: 		750,
+					easing: 			mojs.easing.bezier(0, 1, 0.5, 1)
 				}),
 				// icon scale animation
 				new mojs.Tween({
@@ -312,19 +294,17 @@
 			tweens : [
 				// burst animation
 				new mojs.Burst({
-					parent: el5,
-					duration: 1500,
-					shape : 'circle',
-					fill : '#988ADE',
-					x: '50%',
-					y: '50%',
-					opacity: 0.6,
-					childOptions: { radius: {20:0} },
-					radius: {20:80},
-					angle: {0: 140},
-					count: 15,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					parent: 	el5,
+					count: 		15,
+					radius: 	{20:80},
+					angle: 		{ 0: 140, easing: mojs.easing.bezier(0.1, 1, 0.3, 1) },
+					children: {
+						fill: 			'#988ADE',
+						radius: 		20,
+						opacity: 		0.6,
+						duration: 	1500,
+						easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
+					}
 				}),
 				// icon scale animation
 				new mojs.Tween({
@@ -352,36 +332,29 @@
 			tweens : [
 				// burst animation
 				new mojs.Burst({
-					parent: el6,
-					duration: 1500,
-					shape : 'circle',
-					fill : 'white',
-					x: '50%',
-					y: '50%',
-					childOptions: { 
-						radius: {12:0},
-						type: 'line',
-						stroke: '#988ADE',
-						strokeWidth: 2
+					parent: 			el6,
+					radius: 			{40:110},
+					count: 				20,
+					children: {
+						shape: 			'line',
+						fill : 			'white',
+						radius: 		{ 12: 0 },
+						scale: 			1,
+						stroke: 		'#988ADE',
+						strokeWidth: 2,
+						duration: 	1500,
+						easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
 					},
-					radius: {40:110},
-					count: 20,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
 				}),
 				// ring animation
-				new mojs.Transit({
-					parent: el6,
-					duration: 800,
-					type: 'circle',
-					radius: {10: 60},
-					fill: 'transparent',
-					stroke: '#988ADE',
-					strokeWidth: {30:0},
-					x: '50%',     
-					y: '50%',
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+				new mojs.Shape({
+					parent: 			el6,
+					radius: 			{10: 60},
+					fill: 				'transparent',
+					stroke: 			'#988ADE',
+					strokeWidth: 	{30:0},
+					duration: 		800,
+					easing: 			mojs.easing.bezier(0.1, 1, 0.3, 1)
 				}),
 				// icon scale animation
 				new mojs.Tween({
@@ -408,51 +381,44 @@
 			tweens : [
 				// burst animation
 				new mojs.Burst({
-					parent: el7,
-					duration: 1200,
-					delay: 200,
-					shape : 'circle',
-					fill: '#988ADE',
-					x: '50%',
-					y: '50%',
-					opacity: 0.6,
-					childOptions: { radius: {'rand(20,5)':0} },
-					radius: {90:150},
-					count: 18,
-					isSwirl: true,
-					swirlSize: 15,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					parent: 		el7,
+					radius: 		{90:150},
+					count: 			18,
+					children: {
+						fill: 			'#988ADE',
+						opacity: 		0.6,
+						scale:      1,
+						radius: 		{'rand(5,20)':0},
+						swirlSize: 	15,
+						direction:  [ 1, 1, -1, -1, 1, 1, -1, -1, -1 ],
+						duration: 	1200,
+						delay: 			200,
+						easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1),
+						isSwirl: 		true
+
+					}
 				}),
 				// ring animation
-				new mojs.Transit({
-					parent: el7,
-					duration: 1500,
-					type: 'circle',
-					radius: {30: 100},
-					fill: 'transparent',
-					stroke: '#988ADE',
-					strokeWidth: {30:0},
-					opacity: 0.6,
-					x: '50%',     
-					y: '50%',
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+				new mojs.Shape({
+					parent: 			el7,
+					radius: 			{30: 100},
+					fill: 				'transparent',
+					stroke: 			'#988ADE',
+					strokeWidth: 	{30:0},
+					opacity: 			0.6,
+					duration: 		1500,
+					easing: 			mojs.easing.bezier(0.1, 1, 0.3, 1)
 				}),
-				new mojs.Transit({
-					parent: el7,
-					duration: 1600,
-					delay: 320,
-					type: 'circle',
-					radius: {30: 80},
-					fill: 'transparent',
-					stroke: '#988ADE',
+				new mojs.Shape({
+					parent: 		el7,
+					radius: 		{30: 80},
+					fill: 			'transparent',
+					stroke: 		'#988ADE',
 					strokeWidth: {20:0},
-					opacity: 0.3,
-					x: '50%',     
-					y: '50%',
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					opacity: 		0.3,
+					duration: 	1600,
+					delay: 			320,
+					easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
 				}),
 				// icon scale animation
 				new mojs.Tween({
@@ -484,79 +450,71 @@
 			tweens : [
 				// burst animation
 				new mojs.Burst({
-					parent: el8,
-					duration: 1600,
-					shape : 'circle',
-					fill: '#988ADE',
-					x: '50%',
-					y: '50%',
-					opacity: 0.6,
-					childOptions: { radius: {'rand(20,5)':0} },
-					radius: {50:110},
-					count: 28,
-					isSwirl: true,
-					swirlSize: 15,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					parent: 			el8,
+					count: 				28,
+					radius: 			{50:110},
+					children: {
+						fill: 			'#988ADE',
+						opacity: 		0.6,
+						radius: 		{'rand(5,20)':0},
+						scale: 			1,
+						swirlSize: 	15,
+						duration: 	1600,
+						easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1),
+						isSwirl: 		true
+					}
 				}),
 				// burst animation
 				new mojs.Burst({
-					parent: el8,
-					duration: 1800,
-					delay: 300,
-					shape : 'circle',
-					fill: '#988ADE',
-					x: '50%',
-					y: '50%',
-					opacity: 0.6,
-					childOptions: { 
-						radius: {'rand(20,5)':0},
-						type: 'line',
-						stroke: '#988ADE',
-						strokeWidth: 2
-					},
-					angle: {0:10},
-					radius: {140:200},
-					count: 18,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					parent: 	el8,
+					count: 		18,
+					angle: 		{0:10},
+					radius: 	{140:200},
+					children: {
+						fill: 			'#988ADE',
+						shape: 			'line',
+						opacity: 		0.6,
+						radius: 		{'rand(5,20)':0},
+						scale: 			1,
+						stroke: 		'#988ADE',
+						strokeWidth: 2,
+						duration: 	1800,
+						delay: 			300,
+						easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
+					}
 				}),
 				// burst animation
 				new mojs.Burst({
-					parent: el8,
-					duration: 2000,
-					delay: 500,
-					shape : 'circle',
-					fill: '#988ADE',
-					x: '50%',
-					y: '50%',
-					opacity: 0.6,
-					childOptions: { radius: {'rand(20,5)':0} },
-					radius: {40:80},
-					count: 18,
-					isSwirl: true,
-					swirlSize: 15,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					parent: 	el8,
+					radius: 	{40:80},
+					count: 		18,
+					children: {
+						fill: 			'#988ADE',
+						opacity: 		0.6,
+						radius: 		{'rand(5,20)':0},
+						scale: 			1,
+						swirlSize:  15,
+						duration: 	2000,
+						delay: 			500,
+						easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1),
+						isSwirl: 		true
+					}
 				}),
 				// burst animation
 				new mojs.Burst({
-					parent: el8,
-					duration: 3000,
-					delay: 750,
-					shape : 'circle',
-					fill: '#988ADE',
-					x: '50%',
-					y: '50%',
-					opacity: 0.6,
-					childOptions: { 
-						radius: {'rand(20,10)':0}
-					},
-					angle: {0:-10},
-					radius: {90:130},
-					count: 20,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					parent: 	el8,
+					count: 		20,
+					angle: 		{0:-10},
+					radius: 	{90:130},
+					children: {
+						fill: 			'#988ADE',
+						opacity: 		0.6,
+						radius: 		{'rand(10,20)':0},
+						scale: 			1,
+						duration: 	3000,
+						delay: 			750,
+						easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
+					}
 				}),
 				// icon scale animation
 				new mojs.Tween({
@@ -584,68 +542,60 @@
 			tweens : [
 				// burst animation
 				new mojs.Burst({
-					parent: el9,
-					duration: 1500,
-					delay: 350,
-					shape : 'circle',
-					fill : [ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
-					x: '50%',
-					y: '50%',
-					opacity: 0.6,
-					radius: {40:90},
-					count: 6,
-					angle: 135,
-					degree: 90,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					parent: 		el9,
+					count: 			6,
+					radius: 		{40:90},
+					angle: 			135,
+					degree: 		90,
+					children: {
+						fill : 			[ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
+						scale: 			1,
+						radius: 		{ 7 : 0 },
+						opacity: 		0.6,
+						duration: 	1500,
+						delay: 			350,
+						easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
+					}
 				}),
 				// burst animation
 				new mojs.Burst({
-					parent: el9,
-					duration: 1500,
-					delay: 550,
-					shape : 'circle',
-					fill : [ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
-					x: '50%',
-					y: '50%',
-					opacity: 0.6,
-					radius: {40:100},
-					count: 6,
-					angle: 45,
-					degree: -90,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					parent: 	el9,
+					count: 		6,
+					angle: 		45,
+					degree:  -90,
+					radius: 	{40:100},
+					children: {
+						fill: 			[ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
+						scale: 			1,
+						radius: 		{ 7 : 0 },
+						opacity: 		0.6,
+						duration: 	1500,
+						delay: 			550,
+						easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
+					}
 				}),
 				// ring animation
-				new mojs.Transit({
-					parent: el9,
-					duration: 750,
-					type: 'circle',
-					radius: {0: 50},
-					fill: 'transparent',
-					stroke: '#988ADE',
+				new mojs.Shape({
+					parent: 	el9,
+					radius: 	{0: 50},
+					fill: 		'transparent',
+					stroke: 	'#988ADE',
 					strokeWidth: {35:0},
-					opacity: 0.6,
-					x: '50%',     
-					y: '50%',
-					isRunLess: true,
-					easing: mojs.easing.bezier(0, 1, 0.5, 1)
+					opacity: 		0.6,
+					duration: 	750,
+					easing: 		mojs.easing.bezier(0, 1, 0.5, 1)
 				}),
 				// ring animation
-				new mojs.Transit({
-					parent: el9,
-					duration: 750,
-					delay: 200,
-					type: 'circle',
-					radius: {0: 50},
-					fill: 'transparent',
-					stroke: '#988ADE',
-					strokeWidth: {35:0},
-					opacity: 0.6,
-					x: '50%',     
-					y: '50%',
-					isRunLess: true,
-					easing: mojs.easing.bezier(0, 1, 0.5, 1)
+				new mojs.Shape({
+					parent: 			el9,
+					radius: 			{0: 50},
+					fill: 				'transparent',
+					stroke: 			'#988ADE',
+					strokeWidth: 	{35:0},
+					opacity: 			0.6,
+					duration: 		750,
+					delay: 				200,
+					easing: 			mojs.easing.bezier(0, 1, 0.5, 1)
 				}),
 				// icon scale animation
 				new mojs.Tween({
@@ -679,25 +629,22 @@
 			tweens : [
 				// burst animation
 				new mojs.Burst({
-					parent: el10,
-					duration: 600,
-					shape : 'circle',
-					fill: '#C0C1C3',
-					x: '50%',
-					y: '50%',
-					opacity: 0.6,
-					childOptions: { 
-						radius: {30:0},
-						type: 'line',
-						stroke: '#6F97F7',
-						strokeWidth: {1:2}
-					},
-					radius: {80:130},
-					degree: 90,
-					angle: 135,
-					count: 6,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					parent: 			el10,
+					radius: 			{80:130},
+					degree: 			90,
+					angle: 				135,
+					count: 				6,
+					children: {
+						shape: 				'line',
+						fill: 				'#C0C1C3',
+						scale: 				1,
+						radius: 			{30:0},
+						opacity: 			0.6,
+						duration: 		600,
+						stroke: 			'#6F97F7',
+						strokeWidth: 	{1:2},
+						easing: 			mojs.easing.bezier(0.1, 1, 0.3, 1)
+					}
 				}),
 				// icon scale animation
 				new mojs.Tween({
@@ -734,36 +681,28 @@
 		new Animocon(el11, {
 			tweens : [
 				// ring animation
-				new mojs.Transit({
-					parent: el11,
-					duration: 1000,
-					delay: 100,
-					type: 'circle',
-					radius: {0: 95},
-					fill: 'transparent',
-					stroke: '#C0C1C3',
+				new mojs.Shape({
+					parent: 		el11,
+					radius: 		{0: 95},
+					fill: 			'transparent',
+					stroke: 		'#C0C1C3',
 					strokeWidth: {50:0},
-					opacity: 0.4,
-					x: '50%',     
-					y: '50%',
-					isRunLess: true,
-					easing: mojs.easing.bezier(0, 1, 0.5, 1)
+					opacity: 		0.4,
+					duration: 	1000,
+					delay: 			100,
+					easing: 		mojs.easing.bezier(0, 1, 0.5, 1)
 				}),
 				// ring animation
-				new mojs.Transit({
-					parent: el11,
-					duration: 1800,
-					delay: 300,
-					type: 'circle',
-					radius: {0: 80},
-					fill: 'transparent',
-					stroke: '#C0C1C3',
+				new mojs.Shape({
+					parent: 	el11,
+					radius: 	{0: 80},
+					fill: 		'transparent',
+					stroke: 	'#C0C1C3',
 					strokeWidth: {40:0},
-					opacity: 0.2,
-					x: '50%',     
-					y: '50%',
-					isRunLess: true,
-					easing: mojs.easing.bezier(0, 1, 0.5, 1)
+					opacity: 	0.2,
+					duration: 1800,
+					delay: 		300,
+					easing: 	mojs.easing.bezier(0, 1, 0.5, 1)
 				}),
 				// icon scale animation
 				new mojs.Tween({
@@ -795,66 +734,59 @@
 			tweens : [
 				// burst animation
 				new mojs.Burst({
-					parent: el12,
-					duration: 500,
-					delay: 200,
-					shape : 'circle',
-					fill: '#C0C1C3',
-					x: '50%',
-					y: '90%',
-					opacity: 0.5,
-					childOptions: { 
-						radius: {40:0},
-						type: 'line',
-						stroke: '#C0C1C3',
-						strokeWidth: {4:1},
-						strokeLinecap: 'round'
-					},
-					radius: {10:90},
-					angle: 92,
-					count: 2,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					parent: 	el12,
+					count: 		2,
+					radius: 	{10:90},
+					angle: 		92,
+					top: 					'90%',
+					children: {
+						shape: 				'line',
+						fill: 				'#C0C1C3',
+						scale: 				1,
+						radius: 			{40:0},
+						stroke: 			'#C0C1C3',
+						strokeWidth: 	{4:1},
+						strokeLinecap:'round',
+						opacity: 			0.5,
+						duration: 		500,
+						delay: 				200,
+						easing: 			mojs.easing.bezier(0.1, 1, 0.3, 1)
+					}
 				}),
 				// burst animation
 				new mojs.Burst({
-					parent: el12,
-					duration: 600,
-					delay: 200,
-					shape : 'circle',
-					fill: '#C0C1C3',
-					x: '50%',
-					y: '90%',
-					opacity: 0.5,
-					childOptions: { 
-						radius: {10:0},
-						type: 'line',
-						stroke: '#C0C1C3',
-						strokeWidth: {4:1},
-						strokeLinecap: 'round'
-					},
-					radius: {10:40},
-					angle: 182,
-					count: 3,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					parent: 			el12,
+					count: 				3,
+					radius: 			{10:40},
+					angle: 				182,
+					top: 					'90%',
+					children: {
+						shape: 			'line',
+						fill: 			'#C0C1C3',
+						opacity: 		0.5,
+						scale: 			1,
+						radius: 		{10:0},
+						stroke: 		'#C0C1C3',
+						strokeWidth:{4:1},
+						strokeLinecap: 'round',
+						duration: 	600,
+						delay: 			200,
+						easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
+					}
 				}),
 				// ring animation
-				new mojs.Transit({
+				new mojs.Shape({
 					parent: el12,
-					duration: 400,
-					delay: 100,
-					type: 'circle',
-					radius: {40: 0},
-					radiusY: {20: 0},
-					fill: '#C0C1C3',
-					stroke: '#C0C1C3',
+					radius: 	{40: 0},
+					radiusY: 	{20: 0},
+					fill: 		'#C0C1C3',
+					stroke: 	'#C0C1C3',
 					strokeWidth: 1,
-					opacity: 0.3,
-					x: '50%',     
-					y: '90%',
-					isRunLess: true,
-					easing: mojs.easing.bounce.out
+					opacity: 	0.3,
+					top: 			'90%',
+					duration: 400,
+					delay: 		100,
+					easing: 	'bounce.out'
 				}),
 				// icon scale animation
 				new mojs.Tween({
@@ -881,92 +813,48 @@
 			tweens : [
 				// burst animation
 				new mojs.Burst({
-					parent: el13,
-					duration: 600,
-					shape : 'circle',
-					fill: '#C0C1C3',
-					x: '0%',
-					y: '0%',
-					childOptions: { 
-						radius: {60:0},
-						type: 'line',
-						stroke: '#988ADE',
-						strokeWidth: 1
+					parent: 	el13,
+					count: 		3,
+					degree: 	0,
+					radius: 	{80:250},
+					angle:   -90,
+					children: {
+						top: 			[ 0, 45, 0 ],
+						left: 		[ -25, 0, 25 ],
+						shape: 		'line',
+						fill: 		'#C0C1C3',
+						radius: 	{60:0},
+						scale: 		1,
+						stroke: 	'#988ADE',
+						opacity:  0.6,
+						duration: 650,
+						easing: 	mojs.easing.bezier(0.1, 1, 0.3, 1)
 					},
-					radius: {80:250},
-					angle: -90,
-					count: 1,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
 				}),
 				// burst animation
 				new mojs.Burst({
 					parent: el13,
-					duration: 600,
-					shape : 'circle',
-					fill: '#C0C1C3',
-					x: '0%',
-					y: '50%',
-					childOptions: { 
-						radius: {60:0},
-						type: 'line',
-						stroke: '#988ADE',
-						strokeWidth: 1
-					},
-					radius: {80:200},
-					angle: -90,
-					count: 1,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
-				}),
-				// burst animation
-				new mojs.Burst({
-					parent: el13,
-					duration: 600,
-					shape : 'circle',
-					fill: '#C0C1C3',
-					x: '0%',
-					y: '100%',
-					childOptions: { 
-						radius: {60:0},
-						type: 'line',
-						stroke: '#988ADE',
-						strokeWidth: 1
-					},
-					radius: {80:250},
-					angle: -90,
-					count: 1,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
-				}),
-				// burst animation
-				new mojs.Burst({
-					parent: el13,
-					duration: 600,
-					delay: 150,
-					shape : 'circle',
-					fill: '#C0C1C3',
-					x: '50%',
-					y: '50%',
-					childOptions: { 
-						radius: {30:0},
-						type: 'line',
-						stroke: '#988ADE',
-						strokeWidth: {2:1}
-					},
+					count: 	6,
 					radius: {60:90},
 					degree: -90,
-					angle: 135,
-					count: 6,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					angle: 	135,
+					children: { 
+						shape: 				'line',
+						radius: 			{30:0},
+						scale: 				1,
+						stroke: 			'#988ADE',
+						strokeWidth: 	{2:1},
+						duration: 		600,
+						delay: 				200,
+						easing: 			mojs.easing.bezier(0.1, 1, 0.3, 1)
+					},
 				}),
 				// icon scale animation
 				new mojs.Tween({
-					duration : 1000,
+					duration: 1200,
 					onUpdate: function(progress) {
 						var elasticOutProgress = mojs.easing.elastic.out(progress);
-						el13span.style.WebkitTransform = el13span.style.transform = 'translate3d(' + -50*(1-elasticOutProgress) + '%,0,0)';
+						el13span.style.WebkitTransform = el13span.style.transform = 'translate3d(' + -75*(1-elasticOutProgress) + '%,0,0)';
 					}
 				})
 			],
@@ -984,7 +872,7 @@
 		new Animocon(el14, {
 			tweens : [
 				// ring animation
-				new mojs.Transit({
+				new mojs.Shape({
 					parent: el14,
 					duration: 750,
 					type: 'circle',
@@ -993,12 +881,10 @@
 					stroke: '#F35186',
 					strokeWidth: {35:0},
 					opacity: 0.2,
-					x: '50%',     
-					y: '45%',
-					isRunLess: true,
+					top: '45%',
 					easing: mojs.easing.bezier(0, 1, 0.5, 1)
 				}),
-				new mojs.Transit({
+				new mojs.Shape({
 					parent: el14,
 					duration: 500,
 					delay: 100,
@@ -1008,14 +894,11 @@
 					stroke: '#F35186',
 					strokeWidth: {5:0},
 					opacity: 0.2,
-					x: '50%', 
-					y: '50%',
-					shiftX : 40, 
-					shiftY : -60,
-					isRunLess: true,
+					x : 40, 
+					y : -60,
 					easing: mojs.easing.sin.out
 				}),
-				new mojs.Transit({
+				new mojs.Shape({
 					parent: el14,
 					duration: 500,
 					delay: 180,
@@ -1025,14 +908,12 @@
 					stroke: '#F35186',
 					strokeWidth: {5:0},
 					opacity: 0.5,
-					x: '50%', 
-					y: '50%',
-					shiftX : -10, 
-					shiftY : -80,
+					x: -10, 
+					y: -80,
 					isRunLess: true,
 					easing: mojs.easing.sin.out
 				}),
-				new mojs.Transit({
+				new mojs.Shape({
 					parent: el14,
 					duration: 800,
 					delay: 240,
@@ -1042,14 +923,11 @@
 					stroke: '#F35186',
 					strokeWidth: {5:0},
 					opacity: 0.3,
-					x: '50%', 
-					y: '50%',
-					shiftX : -70, 
-					shiftY : -10,
-					isRunLess: true,
+					x: -70, 
+					y: -10,
 					easing: mojs.easing.sin.out
 				}),
-				new mojs.Transit({
+				new mojs.Shape({
 					parent: el14,
 					duration: 800,
 					delay: 240,
@@ -1059,14 +937,11 @@
 					stroke: '#F35186',
 					strokeWidth: {5:0},
 					opacity: 0.4,
-					x: '50%', 
-					y: '50%',
-					shiftX : 80, 
-					shiftY : -50,
-					isRunLess: true,
+					x: 80, 
+					y: -50,
 					easing: mojs.easing.sin.out
 				}),
-				new mojs.Transit({
+				new mojs.Shape({
 					parent: el14,
 					duration: 1000,
 					delay: 300,
@@ -1076,14 +951,11 @@
 					stroke: '#F35186',
 					strokeWidth: {5:0},
 					opacity: 0.2,
-					x: '50%', 
-					y: '50%',
-					shiftX : 20, 
-					shiftY : -100,
-					isRunLess: true,
+					x: 20, 
+					y: -100,
 					easing: mojs.easing.sin.out
 				}),
-				new mojs.Transit({
+				new mojs.Shape({
 					parent: el14,
 					duration: 600,
 					delay: 330,
@@ -1093,11 +965,8 @@
 					stroke: '#F35186',
 					strokeWidth: {5:0},
 					opacity: 0.4,
-					x: '50%', 
-					y: '50%',
-					shiftX : -40, 
-					shiftY : -90,
-					isRunLess: true,
+					x: -40, 
+					y: -90,
 					easing: mojs.easing.sin.out
 				}),
 				// icon scale animation
@@ -1137,23 +1006,22 @@
 				// burst animation
 				new mojs.Burst({
 					parent: el15,
-					duration: 600,
-					shape : 'circle',
-					fill: '#C0C1C3',
-					x: '50%',
-					y: '90%',
-					childOptions: { 
-						radius: {60:0},
-						type: 'line',
-						stroke: '#9BBADC',
-						strokeWidth: 1
-					},
+					top: '90%',
+					count: 1,
 					radius: {30:100},
 					degree: 20,
 					angle: -90,
-					count: 1,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					children: {
+						shape: 'line',
+						fill: '#C0C1C3',
+						radius: {60:0},
+						scale: 	1,
+						stroke: '#9BBADC',
+						opacity: .6,
+						// strokeWidth: 1,
+						duration: 600,
+						easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					},
 				}),
 				// icon scale animation
 				new mojs.Tween({
@@ -1186,90 +1054,39 @@
 			tweens : [
 				// burst animation (circles)
 				new mojs.Burst({
-					parent: el16,
-					duration: 1700,
-					delay: 350,
-					shape : 'circle',
-					fill: '#FF6767',
-					x: '50%',
-					y: '50%',
-					opacity: 0.3,
-					childOptions: { radius: {'rand(15,5)':0} },
-					radius: {0:150},
-					degree: 50,
-					angle: -25,
-					count: 6,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					parent: 		el16,
+					count: 			6,
+					radius: 		{0:150},
+					degree: 		50,
+					angle:      -25,
+					opacity: 		0.3,
+					children: {
+						fill: 			'#FF6767',
+						scale: 			1,
+						radius: 		{'rand(5,15)':0},
+						duration: 	1700,
+						delay: 			350,
+						easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
+					}
 				}),
-				// burst animation (line1)
 				new mojs.Burst({
-					parent: el16,
-					duration: 600,
-					delay: 200,
-					shape : 'circle',
-					fill: '#C0C1C3',
-					x: '20%',
-					y: '100%',
-					childOptions: { 
-						radius: {60:0},
-						type: 'line',
-						stroke: '#FF6767',
-						strokeWidth: 2,
-						strokeLinecap: 'round'
+					parent: 	el16,
+					count: 		3,
+					degree: 	0,
+					radius: 	{80:250},
+					angle:   	180,
+					children: {
+						top: 			[ 45, 0, 45 ],
+						left: 		[ -15, 0, 15 ],
+						shape: 		'line',
+						radius: 	{60:0},
+						scale: 		1,
+						stroke: 	'#FF6767',
+						opacity:  0.4,
+						duration: 650,
+						delay: 		200,
+						easing: 	mojs.easing.bezier(0.1, 1, 0.3, 1)
 					},
-					radius: {50:180},
-					angle: 180,
-					count: 1,
-					opacity: 0.4,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
-				}),
-				// burst animation (line2)
-				new mojs.Burst({
-					parent: el16,
-					duration: 600,
-					delay: 200,
-					shape : 'circle',
-					fill: '#C0C1C3',
-					x: '50%',
-					y: '100%',
-					childOptions: { 
-						radius: {60:0},
-						type: 'line',
-						stroke: '#FF6767',
-						strokeWidth: 2,
-						strokeLinecap: 'round'
-					},
-					radius: {50:220},
-					angle: 180,
-					count: 1,
-					opacity: 0.4,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
-				}),
-				// burst animation (line3)
-				new mojs.Burst({
-					parent: el16,
-					duration: 600,
-					delay: 200,
-					shape : 'circle',
-					fill: '#C0C1C3',
-					x: '80%',
-					y: '100%',
-					childOptions: { 
-						radius: {60:0},
-						type: 'line',
-						stroke: '#FF6767',
-						strokeWidth: 2,
-						strokeLinecap: 'round'
-					},
-					radius: {50:180},
-					angle: 180,
-					count: 1,
-					opacity: 0.4,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
 				}),
 				// icon scale animation
 				new mojs.Tween({
@@ -1303,119 +1120,39 @@
 				// burst animation (line1)
 				new mojs.Burst({
 					parent: el17,
-					duration: 600,
-					shape : 'circle',
-					x: '65%',
-					y: '40%',
-					childOptions: { 
-						radius: {20:0},
-						type: 'line',
-						stroke: '#bf62a6',
-						strokeWidth: 2
+					left: '65%', top: '40%',
+					count: 		5,
+					radius: 	{40:120},
+					angle: 		69,
+					degree:   17,
+					children: {
+						shape: 				'line',
+						scale: 				1,	
+						radius: 			{20:0},
+						stroke: 			['#bf62a6', '#f28c33', '#f5d63d', '#79c267', '#78c5d6'],
+						duration: 		600,
+						easing: 			mojs.easing.bezier(0.1, 1, 0.3, 1)
 					},
-					radius: {40:120},
-					angle: 70,
-					count: 1,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
-				}),
-				// burst animation (line2)
-				new mojs.Burst({
-					parent: el17,
-					duration: 600,
-					shape : 'circle',
-					x: '65%',
-					y: '40%',
-					childOptions: { 
-						radius: {20:0},
-						type: 'line',
-						stroke: '#f28c33',
-						strokeWidth: 2
-					},
-					radius: {40:120},
-					angle: 74,
-					count: 1,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
-				}),
-				// burst animation (line3)
-				new mojs.Burst({
-					parent: el17,
-					duration: 600,
-					shape : 'circle',
-					x: '65%',
-					y: '40%',
-					childOptions: { 
-						radius: {20:0},
-						type: 'line',
-						stroke: '#f5d63d',
-						strokeWidth: 2
-					},
-					radius: {40:120},
-					angle: 78,
-					count: 1,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
-				}),
-				// burst animation (line4)
-				new mojs.Burst({
-					parent: el17,
-					duration: 600,
-					shape : 'circle',
-					x: '65%',
-					y: '40%',
-					childOptions: { 
-						radius: {20:0},
-						type: 'line',
-						stroke: '#79c267',
-						strokeWidth: 2
-					},
-					radius: {40:120},
-					angle: 82,
-					count: 1,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
-				}),
-				// burst animation (line5)
-				new mojs.Burst({
-					parent: el17,
-					duration: 600,
-					shape : 'circle',
-					x: '65%',
-					y: '40%',
-					childOptions: { 
-						radius: {20:0},
-						type: 'line',
-						stroke: '#78c5d6',
-						strokeWidth: 2
-					},
-					radius: {40:120},
-					angle: 86,
-					count: 1,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
 				}),
 				// burst animation (circles)
 				new mojs.Burst({
 					parent: el17,
-					duration: 1600,
-					shape : 'circle',
-					x: '65%',
-					y: '40%',
-					fill: ['#bf62a6','#f28c33','#f5d63d','#79c267','#78c5d6'],
-					childOptions: { 
-						radius: {'rand(20,5)':0},
-						delay: [0,350,200,150,400]
-					},
-					radius: {20:50},
-					degree: 20,
-					angle: 70,
-					isSwirl: true,
-					swirlSize: 4,
-					count: 4,
-					opacity: 0.6,
-					isRunLess: true,
-					easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+					left: '65%', top: '40%',
+					count: 		4,
+					radius: 	{20:50},
+					degree: 	20,
+					angle: 		70,
+					opacity: 	0.6,
+					children: {
+						fill: 			['#bf62a6','#f28c33','#f5d63d','#79c267','#78c5d6'],
+						scale: 			1,
+						radius: 		{'rand(5,20)':0},
+						isSwirl: 		true,
+						swirlSize: 	4,
+						duration: 	1600,
+						delay: 			[0,350,200,150,400],
+						easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
+					}
 				}),
 				// icon scale animation
 				new mojs.Tween({
@@ -1440,73 +1177,69 @@
 		var molinkEl = document.querySelector('.special-link'),
 			moTimeline = new mojs.Timeline(),
 			moburst1 = new mojs.Burst({
-				parent: molinkEl,
-				duration: 1300,
-				shape : 'circle',
-				fill : [ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
-				x: '0%',
-				y: '-50%',
-				radius: {0:60},
-				count: 6,
-				isRunLess: true,
-				easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+				parent: 			molinkEl,
+				count: 				6,
+				left: 				'0%',
+				top:  				'-50%',
+				radius: 			{0:60},
+				children: {
+					fill : 			[ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
+					duration: 	1300,
+					easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
+				}
 			}),
 			moburst2 = new mojs.Burst({
-				parent: molinkEl,
-				duration: 1600,
-				delay: 100,
-				shape : 'circle',
-				fill : [ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
-				x: '-100%',
-				y: '-20%',
-				radius: {0:120},
-				count: 14,
-				isRunLess: true,
-				easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+				parent: 	molinkEl,
+				left: '-100%', top: '-20%',
+				count: 		14,
+				radius: 		{0:120},
+				children: {
+					fill: 			[ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
+					duration: 	1600,
+					delay: 			100,
+					easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
+				}
 			}),
 			moburst3 = new mojs.Burst({
-				parent: molinkEl,
-				duration: 1500,
-				delay: 200,
-				shape : 'circle',
-				fill : [ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
-				x: '130%',
-				y: '-70%',
-				radius: {0:90},
-				count: 8,
-				isRunLess: true,
-				easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+				parent: 			molinkEl,
+				left: '130%', top: '-70%',
+				count: 				8,
+				radius: 			{0:90},
+				children: {
+					fill: 			[ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
+					duration: 	1500,
+					delay: 			200,
+					easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
+				}
 			}),
 			moburst4 = new mojs.Burst({
 				parent: molinkEl,
-				duration: 2000,
-				delay: 300,
-				shape : 'circle',
-				fill : [ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
-				x: '-20%',
-				y: '-150%',
-				radius: {0:60},
-				count: 14,
-				isRunLess: true,
-				easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+				left: '-20%', top: '-150%',
+				count: 		14,
+				radius: 	{0:60},
+				children: {
+					fill: 			[ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
+					duration: 	2000,
+					delay: 			300,
+					easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
+				}
 			}),
 			moburst5 = new mojs.Burst({
-				parent: molinkEl,
-				duration: 1400,
-				delay: 400,
-				shape : 'circle',
-				fill : [ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
-				x: '30%',
-				y: '-100%',
-				radius: {0:60},
-				count: 12,
-				isRunLess: true,
-				easing: mojs.easing.bezier(0.1, 1, 0.3, 1)
+				parent: 	molinkEl,
+				count: 		12,
+				left: '30%', top: '-100%',
+				radius: 		{0:60},
+				children: {
+					fill: 			[ '#988ADE', '#DE8AA0', '#8AAEDE', '#8ADEAD', '#DEC58A', '#8AD1DE' ],
+					duration: 	1400,
+					delay: 			400,
+					easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
+				}
 			});
 
 		moTimeline.add(moburst1, moburst2, moburst3, moburst4, moburst5);
 		molinkEl.addEventListener('mouseenter', function() {
-			moTimeline.start();
+			moTimeline.replay();
 		});
 	}
 	
